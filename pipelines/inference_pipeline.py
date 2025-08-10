@@ -43,7 +43,7 @@ def run_inference_pipeline(ppk = str, sc = str, start_date = str, end_date = str
     targets = target_features.prep_target_lab_features(targets, lab)
     print("DEBUG ",getTime() , " TARGETS 4: ", targets.shape)
     targets = locational_features_inf.get_locational_features(targets)
-    print("DEBUG ",datetime.now() , " TARGETS 5: ", targets.shape)
+    print("DEBUG ",getTime() , " TARGETS 5: ", targets.shape)
     pred = generate_inference.gen_inference(targets, sc)
     print(pred)
     return pred

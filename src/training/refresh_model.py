@@ -136,7 +136,7 @@ def refresh_model(pipeline=False, targets_df=None, targets_aws=None, refresh_dat
 
         feature_order = list(final_df.columns)
         if save_feature_order:
-            with open("data/feature_order.pkl", "wb") as f:
+            with open("models/feature_order.pkl", "wb") as f:
                 pickle.dump(feature_order, f)
 
         # convert to xgb.Dmatrix
@@ -227,12 +227,12 @@ def refresh_model(pipeline=False, targets_df=None, targets_aws=None, refresh_dat
 
     preds_df["pred_cat"] = preds_df.apply(categorize_prediction, axis=1)
     # save preds_df to a csv file with timestamp and as latest
-    preds_df.to_csv(f"data/preds_{timestamp}.csv", index=False)
+    preds_df.to_csv(f"models/preds_{timestamp}.csv", index=False)
 
     # save the site-specific thresholds to a file with timestamp and as latest
-    with open(f"data/site_thresholds_{timestamp}.pkl", "wb") as f:
+    with open(f"models/site_thresholds_{timestamp}.pkl", "wb") as f:
         pickle.dump(site_thresholds, f)
-    shutil.copyfile(f"data/site_thresholds_{timestamp}.pkl", "data/site_thresholds_latest.pkl")
+    shutil.copyfile(f"models/site_thresholds_{timestamp}.pkl", "models/site_thresholds_latest.pkl")
 
 
     # get the 25th percentile of the predictions
