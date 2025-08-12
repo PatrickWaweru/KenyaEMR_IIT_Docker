@@ -6,6 +6,13 @@ ENV PYTHONPATH=/app
 
 # Copy only inference-related files
 COPY pipelines /app/pipelines/
+COPY models/feature_order.pkl /app/models/feature_order.pkl
+COPY models/mod_latest.json /app/models/mod_latest.json
+COPY models/mod_latest.pkl /app/models/mod_latest.pkl
+COPY models/ohe_latest.pkl /app/models/ohe_latest.pkl
+COPY models/thresholds_latest.pkl /app/models/thresholds_latest.pkl
+COPY models/site_thresholds_latest.pkl /app/models/site_thresholds_latest.pkl
+COPY src /app/src/
 COPY data /app/data/
 COPY src/common /app/src/common/
 COPY src/inference /app/src/inference/
