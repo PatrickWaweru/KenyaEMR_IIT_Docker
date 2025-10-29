@@ -203,7 +203,7 @@ def get_inference_data_sqlite(patientPK=None, sitecode=None):
     # Initialize variables to None
     pharmacy = lab = visits = dem = None
     # Create a connection to the SQLite database (or create it if it doesn't exist)
-    connection = sqlite3.connect("./data/iit_test.sqlite")
+    connection = sqlite3.connect("./data/models/iit_test.sqlite")
     # Create a cursor object to interact with the database
     cursor = connection.cursor()
     # Define the SQL query to fetch data from the 'lab' table
