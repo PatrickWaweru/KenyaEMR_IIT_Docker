@@ -107,10 +107,10 @@ def refresh_model(pipeline=False, targets_df=None, targets_aws=None, refresh_dat
 
     # Save the fitted encoder
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    with open(f"data/ohe_{timestamp}.pkl", "wb") as f:
+    with open(f"data/models/ohe_{timestamp}.pkl", "wb") as f:
         pickle.dump(ohe, f)
     # Save the refreshed encoder as latest to be used in inference
-    shutil.copyfile(f"data/ohe_{timestamp}.pkl", "data/ohe_latest.pkl")
+    shutil.copyfile(f"data/models/ohe_{timestamp}.pkl", "data/models/ohe_latest.pkl")
 
     def encode_xgboost(df, start_date, end_date, save_feature_order):
 
@@ -174,8 +174,8 @@ def refresh_model(pipeline=False, targets_df=None, targets_aws=None, refresh_dat
     )
 
     # After training with xgb.train(...)
-    gb_model.save_model(f"data/mod_{timestamp}.json")
-    shutil.copyfile(f"data/mod_{timestamp}.json", "data/mod_latest.json")
+    gb_model.save_model(f"data/models/mod_{timestamp}.json")
+    shutil.copyfile(f"data/models/mod_{timestamp}.json", "data/models/mod_latest.json")
 
     # Generate predictions on the validation set
     preds = gb_model.predict(dval)
@@ -245,9 +245,9 @@ def refresh_model(pipeline=False, targets_df=None, targets_aws=None, refresh_dat
         "medium": threshold_medium,
     }   
     # save thresholds to a file with timestamp and as latest
-    with open(f"data/thresholds_{timestamp}.pkl", "wb") as f:
+    with open(f"data/models/thresholds_{timestamp}.pkl", "wb") as f:
         pickle.dump(thresholds, f)
-    shutil.copyfile(f"data/thresholds_{timestamp}.pkl", "data/thresholds_latest.pkl")
+    shutil.copyfile(f"data/models/thresholds_{timestamp}.pkl", "data/models/thresholds_latest.pkl")
 
 
 if __name__ == "__main__":

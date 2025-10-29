@@ -3,16 +3,19 @@ version: "3.8"
 services:
   kenyaemr-inference:
     build: .
+    network_mode: "host"
     ports:
       - "8000:8000"
     volumes:
       - /opt/ml/iit/settings.json:/app/data/settings.json
       - /opt/ml/iit/locational_variables_latest.csv:/app/data/locational_variables_latest.csv
-      - /opt/ml/iit/models/thresholds_latest.pkl:/app/models/thresholds_latest.pkl
-      - /opt/ml/iit/models/site_thresholds_latest.pkl:/app/models/site_thresholds_latest.pkl
-      - /opt/ml/iit/models/ohe_latest.pkl:/app/models/ohe_latest.pkl
-      - /opt/ml/iit/models/mod_latest.pkl:/app/models/mod_latest.pkl
-      - /opt/ml/iit/models/mod_latest.json:/app/models/mod_latest.json
-      - /opt/ml/iit/models/feature_order.pkl:/app/models/feature_order.pkl
+      - /opt/ml/iit/models/thresholds_latest.pkl:/app/data/models/thresholds_latest.pkl
+      - /opt/ml/iit/models/site_thresholds_latest.pkl:/app/data/models/site_thresholds_latest.pkl
+      - /opt/ml/iit/models/ohe_latest.pkl:/app/data/models/ohe_latest.pkl
+      - /opt/ml/iit/models/mod_latest.json:/app/data/models/mod_latest.json
+      - /opt/ml/iit/models/mod_latest.so:/app/data/models/mod_latest.so
+      - /opt/ml/iit/models/feature_order.pkl:/app/data/models/feature_order.pkl
+      - /opt/ml/iit/models/iit_test.sqlite:/app/data/models/iit_test.sqlite
+      - /opt/ml/iit/models/locational_variables_latest.csv:/app/data/models/locational_variables_latest.csv
     extra_hosts:
       - "host.docker.internal:host-gateway"
